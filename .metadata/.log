@@ -1,0 +1,288 @@
+!SESSION 2015-10-11 22:20:53.471 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -data C:\xampp\htdocs\SymfonyPractice -product org.eclipse.epp.package.php.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-10-11 22:26:50.915
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Maria Negrea'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.dubture.composer.core 4 4 2015-10-11 22:30:33.322
+!MESSAGE Installing symfony/framework-standard-edition (2.7.x-dev 3c68236e598948749b87009faa999ca7b5469097)
+  - Installing symfony/framework-standard-edition (2.7.x-dev 3c68236)
+    Cloning 3c68236e598948749b87009faa999ca7b5469097
+    Failed to download symfony/framework-standard-edition from source: Failed to clone git@github.com:symfony/symfony-standard.git, git was not found, check that it is installed and in your PATH env.
+'git' is not recognized as an internal or external command,
+operable program or batch file.
+    Now trying to download from dist
+  - Installing symfony/framework-standard-edition (2.7.x-dev 3c68236)
+    Loading from cache
+Created project in HelloWorld
+Loading composer repositories with package information
+Installing dependencies (including require-dev) from lock file
+  - Installing doctrine/lexer (v1.0.1)
+    Loading from cache
+  - Installing doctrine/annotations (v1.2.7)
+    Loading from cache
+  - Installing twig/twig (v1.22.2)
+    Loading from cache
+  - Installing psr/log (1.0.0)
+    Loading from cache
+  - Installing doctrine/inflector (v1.0.1)
+    Loading from cache
+  - Installing doctrine/collections (v1.3.0)
+    Loading from cache
+  - Installing doctrine/cache (v1.4.2)
+    Loading from cache
+  - Installing doctrine/common (v2.5.1)
+    Loading from cache
+  - Installing symfony/symfony (v2.7.5)
+    Loading from cache
+  - Installing jdorn/sql-formatter (v1.2.17)
+    Loading from cache
+  - Installing doctrine/doctrine-cache-bundle (v1.0.1)
+    Loading from cache
+  - Installing doctrine/dbal (v2.5.2)
+    Loading from cache
+  - Installing doctrine/doctrine-bundle (v1.5.2)
+    Loading from cache
+
+
+!ENTRY com.dubture.composer.core 4 4 2015-10-11 22:30:34.051
+!MESSAGE Warning: require_once(C:\xampp\htdocs\SymfonyPractice\HelloWorld\app/bootstrap.php.cache): failed to open stream: No such file or directory in C:\xampp\htdocs\SymfonyPractice\HelloWorld\app\console on line 10
+Fatal error: require_once(): Failed opening required 'C:\xampp\htdocs\SymfonyPractice\HelloWorld\app/bootstrap.php.cache' (include_path='.;C:\xampp\php\PEAR') in C:\xampp\htdocs\SymfonyPractice\HelloWorld\app\console on line 10
+
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:30:35.987
+!MESSAGE Could not retrieve project for saving the debug container
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:30:37.369
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:30:41.763
+!MESSAGE /HelloWorld/vendor/doctrine/common/lib/Doctrine/Common/Reflection/RuntimePublicReflectionProperty.php: error parsing namespace parts for ReflectionProperty
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:30:41.789
+!MESSAGE /HelloWorld/vendor/doctrine/common/lib/Doctrine/Common/Reflection/StaticReflectionClass.php: error parsing namespace parts for ReflectionClass
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:30:41.812
+!MESSAGE /HelloWorld/vendor/doctrine/common/lib/Doctrine/Common/Reflection/StaticReflectionMethod.php: error parsing namespace parts for ReflectionMethod
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:30:41.840
+!MESSAGE /HelloWorld/vendor/doctrine/common/lib/Doctrine/Common/Reflection/StaticReflectionProperty.php: error parsing namespace parts for ReflectionProperty
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:30:42.282
+!MESSAGE /HelloWorld/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/OCI8/OCI8Statement.php: error parsing namespace parts for IteratorAggregate
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:30:42.296
+!MESSAGE /HelloWorld/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php: error parsing namespace parts for PDO
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:30:42.374
+!MESSAGE /HelloWorld/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/SQLAnywhere/SQLAnywhereStatement.php: error parsing namespace parts for IteratorAggregate
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:30:42.415
+!MESSAGE /HelloWorld/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/SQLSrv/SQLSrvStatement.php: error parsing namespace parts for IteratorAggregate
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 2 0 2015-10-11 22:45:33.691
+!MESSAGE Error parsing metadata repository
+!SUBENTRY 1 org.eclipse.equinox.p2.core 2 0 2015-10-11 22:45:33.692
+!MESSAGE Error in file:/D:/eclipse/p2/org.eclipse.equinox.p2.repository/cache/content-453354227.jar at line 13, column 62: Missing required attribute in "property": value
+!SUBENTRY 1 org.eclipse.equinox.p2.core 2 0 2015-10-11 22:45:33.692
+!MESSAGE Error in file:/D:/eclipse/p2/org.eclipse.equinox.p2.repository/cache/content-453354227.jar at line 2270, column 62: Missing required attribute in "property": value
+!SUBENTRY 1 org.eclipse.equinox.p2.core 2 0 2015-10-11 22:45:33.692
+!MESSAGE Error in file:/D:/eclipse/p2/org.eclipse.equinox.p2.repository/cache/content-453354227.jar at line 2394, column 62: Missing required attribute in "property": value
+!SUBENTRY 1 org.eclipse.equinox.p2.core 2 0 2015-10-11 22:45:33.692
+!MESSAGE Error in file:/D:/eclipse/p2/org.eclipse.equinox.p2.repository/cache/content-453354227.jar at line 3139, column 62: Missing required attribute in "property": value
+!SUBENTRY 1 org.eclipse.equinox.p2.core 2 0 2015-10-11 22:45:33.692
+!MESSAGE Error in file:/D:/eclipse/p2/org.eclipse.equinox.p2.repository/cache/content-453354227.jar at line 4363, column 62: Missing required attribute in "property": value
+!SUBENTRY 1 org.eclipse.equinox.p2.core 2 0 2015-10-11 22:45:33.692
+!MESSAGE Error in file:/D:/eclipse/p2/org.eclipse.equinox.p2.repository/cache/content-453354227.jar at line 4649, column 62: Missing required attribute in "property": value
+!SUBENTRY 1 org.eclipse.equinox.p2.core 2 0 2015-10-11 22:45:33.692
+!MESSAGE Error in file:/D:/eclipse/p2/org.eclipse.equinox.p2.repository/cache/content-453354227.jar at line 6438, column 62: Missing required attribute in "property": value
+!SUBENTRY 1 org.eclipse.equinox.p2.core 2 0 2015-10-11 22:45:33.692
+!MESSAGE Error in file:/D:/eclipse/p2/org.eclipse.equinox.p2.repository/cache/content-453354227.jar at line 7184, column 62: Missing required attribute in "property": value
+!SESSION 2015-10-11 22:46:08.639 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -product org.eclipse.epp.package.php.product -data file:/C:/xampp/htdocs/SymfonyPractice/ -product org.eclipse.epp.package.php.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-10-11 22:46:23.224
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Maria Negrea'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:48:56.705
+!MESSAGE Could not retrieve project for saving the debug container
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:48:59.985
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:48:59.992
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.002
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.008
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.015
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.022
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.027
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.034
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.040
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.072
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.078
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.085
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.091
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.097
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.104
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.109
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.164
+!MESSAGE Error setting marker for synthetic service service_container
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:00.176
+!MESSAGE Error setting marker for synthetic service kernel
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:03.034
+!MESSAGE /HelloWorld2/vendor/doctrine/common/lib/Doctrine/Common/Reflection/RuntimePublicReflectionProperty.php: error parsing namespace parts for ReflectionProperty
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:03.066
+!MESSAGE /HelloWorld2/vendor/doctrine/common/lib/Doctrine/Common/Reflection/StaticReflectionClass.php: error parsing namespace parts for ReflectionClass
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:03.098
+!MESSAGE /HelloWorld2/vendor/doctrine/common/lib/Doctrine/Common/Reflection/StaticReflectionMethod.php: error parsing namespace parts for ReflectionMethod
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:03.153
+!MESSAGE /HelloWorld2/vendor/doctrine/common/lib/Doctrine/Common/Reflection/StaticReflectionProperty.php: error parsing namespace parts for ReflectionProperty
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:03.733
+!MESSAGE /HelloWorld2/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/OCI8/OCI8Statement.php: error parsing namespace parts for IteratorAggregate
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:03.754
+!MESSAGE /HelloWorld2/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php: error parsing namespace parts for PDO
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:03.860
+!MESSAGE /HelloWorld2/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/SQLAnywhere/SQLAnywhereStatement.php: error parsing namespace parts for IteratorAggregate
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:03.917
+!MESSAGE /HelloWorld2/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/SQLSrv/SQLSrvStatement.php: error parsing namespace parts for IteratorAggregate
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:07.529
+!MESSAGE /HelloWorld2/vendor/doctrine/orm/lib/Doctrine/ORM/Id/SequenceGenerator.php: error parsing namespace parts for Serializable
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:08.261
+!MESSAGE /HelloWorld2/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php: error parsing namespace parts for ReflectionProperty
+
+!ENTRY com.dubture.symfony.core 2 2 2015-10-11 22:49:08.308
+!MESSAGE /HelloWorld2/vendor/doctrine/orm/lib/Doctrine/ORM/ORMException.php: error parsing namespace parts for Exception
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.220
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.226
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.234
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.241
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.246
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.254
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.261
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.267
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.274
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.282
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.287
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.293
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.298
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.304
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.310
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.315
+!MESSAGE Unable to parse class attribute from service [service: null]
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.345
+!MESSAGE Error setting marker for synthetic service service_container
+
+!ENTRY com.dubture.symfony.core 1 1 2015-10-11 22:49:21.353
+!MESSAGE Error setting marker for synthetic service kernel
+
+!ENTRY org.eclipse.jface 2 0 2015-10-11 22:49:56.178
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2015-10-11 22:49:56.178
+!MESSAGE A conflict occurred for CTRL+SHIFT+N:
+Binding(CTRL+SHIFT+N,
+	ParameterizedCommand(Command(org.eclipse.php.debug.ui.commands.InspectDelegate,Inspect,
+		Inspect result of evaluating selected text,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@19e86461,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.php.ui.phpEditorScope,,,system)
+Binding(CTRL+SHIFT+N,
+	ParameterizedCommand(Command(org.pdtextensions.core.ui.command.phpcsfixer,Run PHP-CS-Fixer,
+		Run PHP-CS-Fixer on files and folders,
+		Category(org.eclipse.core.commands.categories.autogenerated,Uncategorized,Commands that were either auto-generated or have no category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5fe80760,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.php.core.phpsource,,,system)

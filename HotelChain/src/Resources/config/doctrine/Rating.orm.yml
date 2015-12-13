@@ -1,0 +1,48 @@
+Rating:
+    type: entity
+    table: rating
+    indexes:
+        fk_rating_user_idx:
+            columns:
+                - idUser
+        fk_rating_hotel_idx:
+            columns:
+                - idHotel
+    id:
+        idrating:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idRating
+            generator:
+                strategy: IDENTITY
+    fields:
+        value:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+    manyToOne:
+        idhotel:
+            targetEntity: Hotel
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idHotel:
+                    referencedColumnName: idHotel
+            orphanRemoval: false
+        iduser:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUser:
+                    referencedColumnName: idUser
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

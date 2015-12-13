@@ -1,0 +1,79 @@
+Room:
+    type: entity
+    table: room
+    indexes:
+        fk_room_hotel_idx:
+            columns:
+                - idHotel
+        fk_room_roomtype_idx:
+            columns:
+                - idRoomType
+    id:
+        idroom:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idRoom
+            generator:
+                strategy: IDENTITY
+    fields:
+        number:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        price:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 0
+    manyToOne:
+        idhotel:
+            targetEntity: Hotel
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idHotel:
+                    referencedColumnName: idHotel
+            orphanRemoval: false
+        idroomtype:
+            targetEntity: Roomtype
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idRoomType:
+                    referencedColumnName: idRoomType
+            orphanRemoval: false
+    manyToMany:
+        facilityfacility:
+            targetEntity: Facility
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: roomroom
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        imageimage:
+            targetEntity: Image
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: roomroom
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        offeroffer:
+            targetEntity: Offer
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: roomroom
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

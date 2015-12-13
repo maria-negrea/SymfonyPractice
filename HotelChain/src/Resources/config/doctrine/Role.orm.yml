@@ -1,0 +1,39 @@
+Role:
+    type: entity
+    table: role
+    id:
+        idrole:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idRole
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+    manyToMany:
+        useruser:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: rolerole
+            joinTable:
+                name: role_has_user
+                joinColumns:
+                    -
+                        name: role_idRole
+                        referencedColumnName: idRole
+                inverseJoinColumns:
+                    -
+                        name: user_idUser
+                        referencedColumnName: idUser
+            orderBy: null
+    lifecycleCallbacks: {  }

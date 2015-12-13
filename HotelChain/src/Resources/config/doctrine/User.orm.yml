@@ -1,0 +1,61 @@
+User:
+    type: entity
+    table: user
+    id:
+        iduser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idUser
+            generator:
+                strategy: IDENTITY
+    fields:
+        email:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        firstname:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+            column: firstName
+        lastname:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+            column: lastName
+        telephonenumber:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+            column: telephoneNumber
+        isblocked:
+            type: boolean
+            nullable: false
+            column: isBlocked
+    manyToMany:
+        rolerole:
+            targetEntity: Role
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: useruser
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

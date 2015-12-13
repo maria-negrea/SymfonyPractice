@@ -1,0 +1,21 @@
+Roomtype:
+    type: entity
+    table: roomtype
+    id:
+        idroomtype:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idRoomType
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

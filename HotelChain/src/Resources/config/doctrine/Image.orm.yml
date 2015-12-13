@@ -1,0 +1,56 @@
+Image:
+    type: entity
+    table: image
+    id:
+        idimage:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idImage
+            generator:
+                strategy: IDENTITY
+    fields:
+        content:
+            type: blob
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+    manyToMany:
+        hotelhotel:
+            targetEntity: Hotel
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: imageimage
+            joinTable:
+                name: image_has_hotel
+                joinColumns:
+                    -
+                        name: image_idImage
+                        referencedColumnName: idImage
+                inverseJoinColumns:
+                    -
+                        name: hotel_idHotel
+                        referencedColumnName: idHotel
+            orderBy: null
+        roomroom:
+            targetEntity: Room
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: imageimage
+            joinTable:
+                name: image_has_room
+                joinColumns:
+                    -
+                        name: image_idImage
+                        referencedColumnName: idImage
+                inverseJoinColumns:
+                    -
+                        name: room_idRoom
+                        referencedColumnName: idRoom
+            orderBy: null
+    lifecycleCallbacks: {  }

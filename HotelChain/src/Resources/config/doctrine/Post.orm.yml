@@ -1,0 +1,49 @@
+Post:
+    type: entity
+    table: post
+    indexes:
+        fk_post_user_idx:
+            columns:
+                - idUser
+        fk_post_hotel_idx:
+            columns:
+                - idHotel
+    id:
+        idpost:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idPost
+            generator:
+                strategy: IDENTITY
+    fields:
+        body:
+            type: string
+            nullable: false
+            length: 20000
+            options:
+                fixed: false
+    manyToOne:
+        idhotel:
+            targetEntity: Hotel
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idHotel:
+                    referencedColumnName: idHotel
+            orphanRemoval: false
+        iduser:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUser:
+                    referencedColumnName: idUser
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

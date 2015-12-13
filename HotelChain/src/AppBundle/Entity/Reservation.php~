@@ -1,0 +1,67 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Reservation
+ *
+ * @ORM\Table(name="reservation", indexes={@ORM\Index(name="fk_reservation_room_idx", columns={"idRoom"}), @ORM\Index(name="fk_reservation_user_idx", columns={"idUser"})})
+ * @ORM\Entity
+ */
+class Reservation
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idReservation", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idreservation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="checkInDate", type="datetime", nullable=false)
+     */
+    private $checkindate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="checkOutDate", type="datetime", nullable=false)
+     */
+    private $checkoutdate;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isCanceled", type="boolean", nullable=false)
+     */
+    private $iscanceled;
+
+    /**
+     * @var \Room
+     *
+     * @ORM\ManyToOne(targetEntity="Room")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idRoom", referencedColumnName="idRoom")
+     * })
+     */
+    private $idroom;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
+     * })
+     */
+    private $iduser;
+
+
+}
+

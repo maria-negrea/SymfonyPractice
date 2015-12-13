@@ -1,0 +1,55 @@
+Reservation:
+    type: entity
+    table: reservation
+    indexes:
+        fk_reservation_room_idx:
+            columns:
+                - idRoom
+        fk_reservation_user_idx:
+            columns:
+                - idUser
+    id:
+        idreservation:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idReservation
+            generator:
+                strategy: IDENTITY
+    fields:
+        checkindate:
+            type: datetime
+            nullable: false
+            column: checkInDate
+        checkoutdate:
+            type: datetime
+            nullable: false
+            column: checkOutDate
+        iscanceled:
+            type: boolean
+            nullable: false
+            column: isCanceled
+    manyToOne:
+        idroom:
+            targetEntity: Room
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idRoom:
+                    referencedColumnName: idRoom
+            orphanRemoval: false
+        iduser:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUser:
+                    referencedColumnName: idUser
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,36 @@
+City:
+    type: entity
+    table: city
+    indexes:
+        fk_city_country_idx:
+            columns:
+                - idCountry
+    id:
+        idcity:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idCity
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+    manyToOne:
+        idcountry:
+            targetEntity: Country
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCountry:
+                    referencedColumnName: idCountry
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

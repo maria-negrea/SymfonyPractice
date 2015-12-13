@@ -1,0 +1,21 @@
+Country:
+    type: entity
+    table: country
+    id:
+        idcountry:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idCountry
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

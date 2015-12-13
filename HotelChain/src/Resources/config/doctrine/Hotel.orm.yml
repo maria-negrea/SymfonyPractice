@@ -1,0 +1,63 @@
+Hotel:
+    type: entity
+    table: hotel
+    indexes:
+        fk_hotel_city_idx:
+            columns:
+                - idCity
+    id:
+        idhotel:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idHotel
+            generator:
+                strategy: IDENTITY
+    fields:
+        address:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        description:
+            type: string
+            nullable: true
+            length: 200
+            options:
+                fixed: false
+        numberofstars:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: numberOfStars
+    manyToOne:
+        idcity:
+            targetEntity: City
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCity:
+                    referencedColumnName: idCity
+            orphanRemoval: false
+    manyToMany:
+        imageimage:
+            targetEntity: Image
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: hotelhotel
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

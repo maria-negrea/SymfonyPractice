@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Offer</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Idoffer</th>
+                <td>{{ entity.idoffer }}</td>
+            </tr>
+            <tr>
+                <th>Discount</th>
+                <td>{{ entity.discount }}</td>
+            </tr>
+            <tr>
+                <th>Startdate</th>
+                <td>{{ entity.startdate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Enddate</th>
+                <td>{{ entity.enddate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('offer') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('offer_edit', { 'id': entity.idoffer }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

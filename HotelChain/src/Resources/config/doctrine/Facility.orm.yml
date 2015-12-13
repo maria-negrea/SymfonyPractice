@@ -1,0 +1,39 @@
+Facility:
+    type: entity
+    table: facility
+    id:
+        idfacility:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idFacility
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+    manyToMany:
+        roomroom:
+            targetEntity: Room
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: facilityfacility
+            joinTable:
+                name: facility_has_room
+                joinColumns:
+                    -
+                        name: facility_idFacility
+                        referencedColumnName: idFacility
+                inverseJoinColumns:
+                    -
+                        name: room_idRoom
+                        referencedColumnName: idRoom
+            orderBy: null
+    lifecycleCallbacks: {  }

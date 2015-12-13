@@ -1,0 +1,46 @@
+Offer:
+    type: entity
+    table: offer
+    id:
+        idoffer:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idOffer
+            generator:
+                strategy: IDENTITY
+    fields:
+        discount:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        startdate:
+            type: date
+            nullable: false
+            column: startDate
+        enddate:
+            type: date
+            nullable: false
+            column: endDate
+    manyToMany:
+        roomroom:
+            targetEntity: Room
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: offeroffer
+            joinTable:
+                name: offer_has_room
+                joinColumns:
+                    -
+                        name: offer_idOffer
+                        referencedColumnName: idOffer
+                inverseJoinColumns:
+                    -
+                        name: room_idRoom
+                        referencedColumnName: idRoom
+            orderBy: null
+    lifecycleCallbacks: {  }

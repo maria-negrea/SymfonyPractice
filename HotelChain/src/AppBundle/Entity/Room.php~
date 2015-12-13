@@ -1,0 +1,90 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Room
+ *
+ * @ORM\Table(name="room", indexes={@ORM\Index(name="fk_room_hotel_idx", columns={"idHotel"}), @ORM\Index(name="fk_room_roomtype_idx", columns={"idRoomType"})})
+ * @ORM\Entity
+ */
+class Room
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idRoom", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idroom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="number", type="string", length=45, nullable=false)
+     */
+    private $number;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="price", type="decimal", precision=10, scale=0, nullable=false)
+     */
+    private $price;
+
+    /**
+     * @var \Hotel
+     *
+     * @ORM\ManyToOne(targetEntity="Hotel")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idHotel", referencedColumnName="idHotel")
+     * })
+     */
+    private $idhotel;
+
+    /**
+     * @var \Roomtype
+     *
+     * @ORM\ManyToOne(targetEntity="Roomtype")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idRoomType", referencedColumnName="idRoomType")
+     * })
+     */
+    private $idroomtype;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Facility", mappedBy="roomroom")
+     */
+    private $facilityfacility;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Image", mappedBy="roomroom")
+     */
+    private $imageimage;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Offer", mappedBy="roomroom")
+     */
+    private $offeroffer;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->facilityfacility = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->imageimage = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->offeroffer = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

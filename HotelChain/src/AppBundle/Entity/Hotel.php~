@@ -1,0 +1,78 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Hotel
+ *
+ * @ORM\Table(name="hotel", indexes={@ORM\Index(name="fk_hotel_city_idx", columns={"idCity"})})
+ * @ORM\Entity
+ */
+class Hotel
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idHotel", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idhotel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=100, nullable=false)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=200, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numberOfStars", type="integer", nullable=true)
+     */
+    private $numberofstars;
+
+    /**
+     * @var \City
+     *
+     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idCity", referencedColumnName="idCity")
+     * })
+     */
+    private $idcity;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Image", mappedBy="hotelhotel")
+     */
+    private $imageimage;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->imageimage = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

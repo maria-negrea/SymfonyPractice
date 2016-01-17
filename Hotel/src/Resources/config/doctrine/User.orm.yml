@@ -1,0 +1,66 @@
+User:
+    type: entity
+    table: user
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        email:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        firstName:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: first_name
+        lastName:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: last_name
+        telephoneNumber:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: telephone_number
+        cardNumber:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: card_number
+        isBlocked:
+            type: boolean
+            nullable: false
+            column: is_blocked
+        isAdmin:
+            type: boolean
+            nullable: false
+            column: is_admin
+        isReceptionist:
+            type: boolean
+            nullable: false
+            column: is_receptionist
+    lifecycleCallbacks: {  }

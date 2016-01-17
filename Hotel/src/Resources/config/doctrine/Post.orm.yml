@@ -1,0 +1,41 @@
+Post:
+    type: entity
+    table: post
+    indexes:
+        fk_post_user_idx:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        body:
+            type: string
+            nullable: false
+            length: 20000
+            options:
+                fixed: false
+        ratingValue:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: rating_value
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,89 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity
+ */
+class User
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=45, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=45, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=45, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=45, nullable=true)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telephone_number", type="string", length=45, nullable=true)
+     */
+    private $telephoneNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="card_number", type="string", length=45, nullable=true)
+     */
+    private $cardNumber;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_blocked", type="boolean", nullable=false)
+     */
+    private $isBlocked;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_admin", type="boolean", nullable=false)
+     */
+    private $isAdmin;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_receptionist", type="boolean", nullable=false)
+     */
+    private $isReceptionist;
+
+
+}
+

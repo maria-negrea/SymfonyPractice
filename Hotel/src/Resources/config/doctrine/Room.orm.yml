@@ -1,0 +1,57 @@
+Room:
+    type: entity
+    table: room
+    indexes:
+        fk_room_roomtype_idx:
+            columns:
+                - room_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        number:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        pricePerNight:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 0
+            column: price_per_night
+        hasWireless:
+            type: boolean
+            nullable: false
+            column: has_wireless
+        hasAirConditioning:
+            type: boolean
+            nullable: false
+            column: has_air_conditioning
+        hasTv:
+            type: boolean
+            nullable: false
+            column: has_tv
+        hasMinibar:
+            type: boolean
+            nullable: false
+            column: has_minibar
+    manyToOne:
+        roomType:
+            targetEntity: RoomType
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                room_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

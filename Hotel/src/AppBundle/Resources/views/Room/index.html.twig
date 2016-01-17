@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Room list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Number</th>
+                <th>Price Per Night</th>
+                <th>Has Wireless</th>
+                <th>Has Air Conditioning</th>
+                <th>Has TV</th>
+                <th>Has Minibar</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('room_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.number }}</td>
+                <td>{{ entity.pricePerNight }}</td>
+                <td>{{ entity.hasWireless }}</td>
+                <td>{{ entity.hasAirConditioning }}</td>
+                <td>{{ entity.hasTv }}</td>
+                <td>{{ entity.hasMinibar }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('room_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('room_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('room_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

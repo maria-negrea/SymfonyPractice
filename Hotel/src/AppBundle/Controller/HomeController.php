@@ -44,12 +44,6 @@ class HomeController extends Controller{
 			/* $remember = $request->get('remember'); */
 			$user = $repository->findOneBy(array('email' => $email, 'password' => $password));
 			if ($user) {
-				/* if ($remember == 'remember-me') {
-					$login = new Login();
-					$login->setUsername($username);
-					$login->setPassword($password);
-					$session->set('login', $login);
-				} */
 				
 				$session->set('currentUserInfo', $user);
 				return $this->render('AppBundle:Home:mainPage.html.twig', array('name' => $user->getFirstName()));
@@ -109,10 +103,18 @@ class HomeController extends Controller{
 		return $this->render('AppBundle:Home:register.html.twig');
 	}
 	
+	/**
+	 * Register.
+	 *
+	 * @Route("/logout", name="logout")
+	 * @Template()
+	 */
+	
 	public function logoutAction(Request $request) {
 		$session = $this->getRequest()->getSession();
 		$session->clear();
-		return $this->render('AppBundle:Home:mainPage.html.twig');
+		
+		return $this->redirect($this->generateUrl('mainPage'));
 	}
 	
 	/**

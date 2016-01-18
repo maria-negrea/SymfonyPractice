@@ -23,18 +23,21 @@
 		      <li class="navItem"><a href="description">Description</a></li>
 		      <li class="navItem"><a href="images">Images</a></li>
 		      <li class="navItem"><a href="guestbook">Guestbook</a></li> 
-		      <li class="navItem"><a href="booking">Online booking</a></li> 
+		      <li class="navItem"><a href="booking">Online booking</a></li>
+		      
+		      {% if  app.session.get('currentUserInfo') is not null %}	
+		      		<li class="smallNavItem"><a href="logout">Log out</a></li> 	        	
+			     	<li class="smallNavItem"><a>Hello {{ app.session.get('currentUserInfo').firstName}}</a></li> 
+			     	
+			  	{% else %}
+			  		<li class="smallNavItem"><a href="register">Register</a></li>
+			     	<li class="smallNavItem"><a href="login">Login</a></li>			     	
+			   	{%endif%}          		
 		    </ul>
 		  </div>
 		</nav>
         <body>
         <div class="mainPageSection"></div>
-        
-        {% if name is defined%}
-	    <div class="alert-info fade in">
-	        <strong>Hello, {{app.session.currentUserInfo.email}}!</strong>
-	    </div>
-	    {%endif%}
 
 {%block container %}
 {%endblock%}

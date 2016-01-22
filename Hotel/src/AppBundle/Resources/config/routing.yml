@@ -1,3 +1,0 @@
-home_login:
-    pattern:  /login
-    defaults: { _controller: AppBundle/Home/index }

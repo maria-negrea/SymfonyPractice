@@ -1,24 +1,21 @@
 {%extends "AppBundle:Home:index.html.twig"%}
 {%block container %}
-<div class="container" >
-    <form id="form" class="well" method="POST" action="{{path('register')}}" data-validate="parsley">
-         <h2>Register</h2>
-        <label>Email</label>
-        <input type="text" id="email" name="email" class="input-xlarge" data-trigger="change" data-required="true" data-type="email">
-        <label>Password</label>
-        <input type="password" id=password name="password" class="input-xlarge" data-trigger="change" data-required="true">
-        <label>Repeat Password</label>
-        <input type="password" id="repeatedPassword" name="repeatedPassword" class="input-xlarge" data-trigger="change" data-required="true" data-equalto="#password">
-        <label>First Name</label>
-        <input type="text" name="firstName" class="input-xlarge" data-trigger="change">
-        <label>Last Name</label>
-        <input type="text" name="lastName" class="input-xlarge" data-trigger="change">
-        <label>Telephone number</label>
-        <input type="text" name="telephoneNumber" class="input-xlarge" data-trigger="change">
-        <label>Card number</label>
-        <input type="text" name="cardNumber" class="input-xlarge" data-trigger="change">
+<div >
+    <form id="form" class="form-register" method="POST" action="{{path('register')}}" data-validate="parsley">
+         <h2 class="centeredSection">Register</h2>
+        <input type="text" id="email" name="email" placeholder="Email" class="input-xlarge" data-trigger="change" data-required="true" data-type="email">
+
+        <input type="password" id=password name="password" placeholder="Password" class="input-xlarge" data-trigger="change" data-required="true">
+
+        <input type="text" name="firstName" placeholder="First Name" class="input-xlarge" data-trigger="change">
+
+        <input type="text" name="lastName" placeholder="Last Name" class="input-xlarge" data-trigger="change">
+
+        <input type="text" name="telephoneNumber" placeholder="Telephone Number" class="input-xlarge" data-trigger="change">
+
+        <input type="text" name="cardNumber" placeholder="Card Number" class="input-xlarge" data-trigger="change">
         <div>
-            <button class="btn btn-primary" type="submit" >Create Account</button>
+            <button class="btn btn-primary centeredSection" type="submit" >Create Account</button>
         </div>
 
     </form>

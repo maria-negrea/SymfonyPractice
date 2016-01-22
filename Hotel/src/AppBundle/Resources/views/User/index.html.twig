@@ -1,21 +1,16 @@
-{% extends '::base.html.twig' %}
+{%extends "AppBundle:admin:indexAdmin.html.twig"%}
 
-{% block body -%}
-    <h1>User list</h1>
+{% block container -%}
+<div class="descriptionArea">
+<h1>User list</h1>
 
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Telephone Number</th>
-                <th>Card Number</th>
-                <th>Is Blocked</th>
-                <th>Is Admin</th>
-                <th>Is Receptionist</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -24,14 +19,8 @@
             <tr>
                 <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.email }}</td>
-                <td>{{ entity.password }}</td>
                 <td>{{ entity.firstName }}</td>
                 <td>{{ entity.lastName }}</td>
-                <td>{{ entity.telephoneNumber }}</td>
-                <td>{{ entity.cardNumber }}</td>
-                <td>{{ entity.isBlocked }}</td>
-                <td>{{ entity.isAdmin }}</td>
-                <td>{{ entity.isReceptionist }}</td>
                 <td>
                 <ul>
                     <li>
@@ -54,4 +43,6 @@
             </a>
         </li>
     </ul>
+</div>
+    
     {% endblock %}

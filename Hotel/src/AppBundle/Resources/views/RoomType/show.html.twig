@@ -1,7 +1,8 @@
-{% extends '::base.html.twig' %}
+{%extends "AppBundle:admin:indexAdmin.html.twig"%}
 
-{% block body -%}
-    <h1>RoomType</h1>
+{% block container -%}
+<div class="descriptionArea">
+<h1>RoomType</h1>
 
     <table class="record_properties">
         <tbody>
@@ -29,4 +30,5 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+</div>    
 {% endblock %}

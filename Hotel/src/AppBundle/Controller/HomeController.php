@@ -16,11 +16,22 @@ class HomeController extends Controller{
 	/**
 	 * Index.
 	 *
-	 * @Route("/welcome", name="mainPage")
+	 * @Route("/", name="mainPage")
 	 * @Template()
 	 */
 	public function indexAction()
 	{
+		$currentUser = $this->get('session')->get('currentUserInfo');
+		if($currentUser)
+		{
+			$isAdmin = $currentUser->getIsAdmin();
+			if($isAdmin)
+			{
+				return $this->render('AppBundle:Admin:adminMainPage.html.twig');
+			}
+		}
+		
+			
 		return $this->render('AppBundle:Home:mainPage.html.twig');
 	}
 
@@ -46,21 +57,14 @@ class HomeController extends Controller{
 			if ($user) {
 				
 				$session->set('currentUserInfo', $user);
-				return $this->render('AppBundle:Home:mainPage.html.twig', array('name' => $user->getFirstName()));
+				
+				return $this->redirect($this->generateUrl('mainPage'));
+				
 			} else {
-				return $this->render('AppBundle:Home:login.html.twig', array('name' => 'Login Error'));
+				return $this->render('AppBundle:Home:login.html.twig');
 			}
 		} else {
-			/* if ($session->has('login')) {
-				$login = $session->get('login');
-				email = $login->getEmail();
-				$password = $login->getPassword();
-				$user = $repository->findOneBy(array('userName' => $username, 'password' => $password));
-				if ($user) {
-					
-					return $this->render('LoginLoginBundle:Default:welcome.html.twig', array('name' => $user->getFirstName(),'countries'=>$countries,'total_pages'=>$total_pages,'current_page'=> $page));
-				}
-			} */
+			
 			return $this->render('AppBundle:Home:login.html.twig');
 		}
 	}
@@ -97,6 +101,9 @@ class HomeController extends Controller{
 			$em = $this->getDoctrine()->getEntityManager();
 			$em->persist($user);
 			$em->flush();
+			
+			$session = $this->getRequest()->getSession();
+			$session->set('currentUserInfo', $user);			
 			
 			return $this->render('AppBundle:Home:mainPage.html.twig');
 		}

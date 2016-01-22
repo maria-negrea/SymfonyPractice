@@ -17,21 +17,21 @@
         <nav class="navbar navbar-default">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand bigTitle" href="welcome">MAJESTIC</a>
+		      <a class="navbar-brand bigTitle" href="{{ path('mainPage') }}">MAJESTIC</a>
 		    </div>
 		    <ul class="nav navbar-nav mainTabContainer">
-		      <li class="navItem"><a href="description">Description</a></li>
-		      <li class="navItem"><a href="images">Images</a></li>
-		      <li class="navItem"><a href="guestbook">Guestbook</a></li> 
-		      <li class="navItem"><a href="booking">Online booking</a></li>
+		      <li class="navItem"><a href="{{ path('description') }}">Description</a></li>
+		      <li class="navItem"><a href="{{ path('images') }}">Images</a></li>
+		      <li class="navItem"><a href="{{ path('guestbook') }}">Guestbook</a></li> 
+		      <li class="navItem"><a href="{{ path('booking') }}">Online booking</a></li>
 		      
 		      {% if  app.session.get('currentUserInfo') is not null %}	
-		      		<li class="smallNavItem"><a href="logout">Log out</a></li> 	        	
-			     	<li class="smallNavItem"><a>Hello {{ app.session.get('currentUserInfo').firstName}}</a></li> 
+		      		<li class="smallNavItem"><a href="{{ path('logout') }}">Log out</a></li> 	        	
+			     	<li class="smallNavItem"><a>Hello, {{ app.session.get('currentUserInfo').firstName}}!</a></li> 
 			     	
 			  	{% else %}
-			  		<li class="smallNavItem"><a href="register">Register</a></li>
-			     	<li class="smallNavItem"><a href="login">Login</a></li>			     	
+			  		<li class="smallNavItem"><a href="{{ path('register') }}">Register</a></li>
+			     	<li class="smallNavItem"><a href="{{ path('login') }}">Login</a></li>			     	
 			   	{%endif%}          		
 		    </ul>
 		  </div>
@@ -41,15 +41,13 @@
 
 {%block container %}
 {%endblock%}
-
-
-            <script src="{{asset('bundles/appbundle/js/jquery.js')}}"></script>
-            <script src="{{asset('bundles/appbundle/js/bootstrap.js')}}"></script>
-            <script src="{{asset('bundles/appbundle/js/parsley/parsley.min.js')}}"></script>
-            <script src="{{asset('bundles/appbundle/js/parsley/parsley-standalone.min.js')}}"></script>
-            <script src="{{asset('bundles/appbundle/js/parsley/parsley.extend.min.js')}}"></script>
+		<script src="{{asset('bundles/appbundle/js/jquery.js')}}"></script>
+        <script src="{{asset('bundles/appbundle/js/bootstrap.js')}}"></script>
+        <script src="{{asset('bundles/appbundle/js/parsley/parsley.min.js')}}"></script>
+        <script src="{{asset('bundles/appbundle/js/parsley/parsley-standalone.min.js')}}"></script>
+        <script src="{{asset('bundles/appbundle/js/parsley/parsley.extend.min.js')}}"></script>
 {%block javascripts %}
  {%endblock%}
-        </body>
-    </html>
+		</body>
+</html>
 

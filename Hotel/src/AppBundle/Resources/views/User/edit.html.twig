@@ -1,7 +1,8 @@
 {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
-{% extends '::base.html.twig' %}
+{%extends "AppBundle:Admin:indexAdmin.html.twig"%}
 
-{% block body -%}
+{% block container -%}
+<div class="descriptionArea">
     <h1>User edit</h1>
 
     {{ form(edit_form) }}
@@ -14,4 +15,6 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+</div>
+
 {% endblock %}

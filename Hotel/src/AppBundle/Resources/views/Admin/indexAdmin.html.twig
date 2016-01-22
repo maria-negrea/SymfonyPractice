@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Majestic</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link href="{{asset('bundles/appbundle/css/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/appbundle/css/bootstrap-responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/appbundle/css/parsley/parsley.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/appbundle/css/main.css')}}" rel="stylesheet">
+{%block stylesheets %}
+{%endblock%}
+        </head>
+        <nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand bigTitle" href="{{ path('mainPage') }}">MAJESTIC</a>
+		    </div>
+		    <ul class="nav navbar-nav mainTabContainer">
+		      <li class="navItem"><a href="{{ path('user') }}">Users</a></li>
+		      <li class="navItem"><a href="{{ path('room') }}">Rooms</a></li>
+		      <li class="navItem"><a href="{{ path('roomtype') }}">Room types</a></li>
+		      <li class="navItem"><a href="{{ path('post') }}">Posts</a></li> 
+		      <li class="navItem"><a href="{{ path('reservation') }}">Reservations</a></li>
+		      <li class="navItem"><a href="{{ path('reservationstatus') }}">Reservation statuses</a></li>
+		      <li class="smallNavItem"><a href="{{ path('logout') }}">Log out</a></li>		      	
+		    </ul>
+		  </div>
+		</nav>
+        <body>
+        <div class="mainPageSection"></div>
+
+{%block container %}
+{%endblock%}
+            <script src="{{asset('bundles/appbundle/js/jquery.js')}}"></script>
+            <script src="{{asset('bundles/appbundle/js/bootstrap.js')}}"></script>
+            <script src="{{asset('bundles/appbundle/js/parsley/parsley.min.js')}}"></script>
+            <script src="{{asset('bundles/appbundle/js/parsley/parsley-standalone.min.js')}}"></script>
+            <script src="{{asset('bundles/appbundle/js/parsley/parsley.extend.min.js')}}"></script>
+{%block javascripts %}
+ {%endblock%}
+		</body>
+</html>
+

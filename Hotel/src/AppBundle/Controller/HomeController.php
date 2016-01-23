@@ -54,15 +54,21 @@ class HomeController extends Controller{
 		$repository = $em->getRepository('AppBundle:User');
 		
 		if ($request->getMethod() == 'POST') {
-			
-			$session->clear();
+						
 			$email = $request->get('email');
 			$password = sha1($request->get('password'));
-			/* $remember = $request->get('remember'); */
 			$user = $repository->findOneBy(array('email' => $email, 'password' => $password));
 			if ($user) {
 				
+				if($session->get("canceledReservationId") != null)
+				{
+					$session->set('currentUserInfo', $user);
+					return $this->redirect($this->generateUrl('cancel_reservation', array("id" => $session->get("canceledReservationId"))));
+				}
+				
+				$session->clear();
 				$session->set('currentUserInfo', $user);
+				
 				
 				return $this->redirect($this->generateUrl('mainPage'));
 				

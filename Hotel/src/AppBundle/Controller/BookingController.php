@@ -58,6 +58,17 @@ class BookingController extends Controller
 			
 			$em->persist($reservation);
 			$em->flush();
+			
+			$cancelReservationUrl = "http://localhost:81/SymfonyPractice/Hotel/web/app_dev.php/cancel_reservation/". $reservation->getId();
+			
+			$message = \Swift_Message::newInstance()
+			->setSubject('Majestic Reservation!')
+			->setFrom(array('m.maria_negrea@yahoo.com' => "Majestic Hotel"))
+			->setTo($user->getEmail())
+			->setCharset("utf-8")
+			->setContentType('text/html')
+			->setBody("<h1>Hello, ". $user->getFirstName(). "! Your reservation at Majestic Hotel has been confirmed. If by any reason you want to cancel the reservation, please click the link above:</h1><br><a href='".$cancelReservationUrl."'>Cancel Reservation</a>");
+			$this->get('mailer')->send($message);
 				
 			return $this->redirect($this->generateUrl('mainPage'));
 		}
@@ -98,4 +109,94 @@ class BookingController extends Controller
 		
 		return $this->render('AppBundle:Booking:rooms.html.twig', array('rooms' => $result));
 	}
+	
+	/**
+	 * Cancel reservation.
+	 *
+	 * @Route("/cancel_reservation/{id}", name="cancel_reservation")
+	 * @Method("GET")
+	 * @Template()
+	 */
+	public function cancelReservationAction(Request $request, $id)
+	{
+		$session = $this->getRequest()->getSession();
+		$session->set('canceledReservationId', $id);
+		
+		if($session->get("currentUserInfo") == null)
+		{
+			return $this->redirect($this->generateUrl('login'));
+		}		
+		
+		$em = $this->getDoctrine()->getManager();
+		$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
+		if($reservation)
+		{
+			$status = $em->getRepository('AppBundle:ReservationStatus')->find(2);
+			$reservation->setStatus($status);
+			
+			$em->merge($reservation);
+			$em->flush();
+		}
+		
+		$session->remove('canceledReservationId');
+		return $this->redirect($this->generateUrl('mainPage'));
+	}
+	
+	/**
+	 * Checkin reservation.
+	 *
+	 * @Route("/checkin{id}", name="checkin")
+	 * @Method("GET")
+	 * @Template()
+	 */
+	public function checkinAction(Request $request, $id)
+	{	
+		if($session->get("currentUserInfo") == null || $session->get("currentUserInfo")->getIsReceptionist() == false)
+		{
+			return $this->redirect($this->generateUrl('login'));
+		}
+	
+		$em = $this->getDoctrine()->getManager();
+		$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
+		if($reservation)
+		{
+			$status = $em->getRepository('AppBundle:ReservationStatus')->find(3);
+			$reservation->setStatus($status);
+				
+			$em->merge($reservation);
+			$em->flush();
+		}
+		
+		return $this->redirect($this->generateUrl('mainPage'));
+	}
+	
+	/**
+	 * Checkout reservation.
+	 *
+	 * @Route("/checkout{id}", name="checkout")
+	 * @Method("GET")
+	 * @Template()
+	 */
+	public function checkoutAction(Request $request, $id)
+	{	
+		if($session->get("currentUserInfo") == null || $session->get("currentUserInfo")->getIsReceptionist() == false)
+		{
+			return $this->redirect($this->generateUrl('login'));
+		}
+	
+		$em = $this->getDoctrine()->getManager();
+		$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
+		if($reservation)
+		{
+			$status = $em->getRepository('AppBundle:ReservationStatus')->find(4);
+			$reservation->setStatus($status);
+				
+			$em->merge($reservation);
+			$em->flush();
+		}
+		
+		return $this->redirect($this->generateUrl('mainPage'));
+	}
+	
+	
 }

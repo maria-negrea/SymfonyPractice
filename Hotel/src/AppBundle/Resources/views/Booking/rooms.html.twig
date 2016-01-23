@@ -1,0 +1,3 @@
+{% for room in rooms %}
+<option value="{{ room.id }}" data-price="{{ room.price_per_night }}">{{ room.number }}</option>
+{% endfor %}

@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\RoomType;
+use Doctrine\ORM\Query\ResultSetMapping;
+use AppBundle\Entity\Reservation;
+use DateTime;
 
 class BookingController extends Controller
 {
@@ -30,12 +33,35 @@ class BookingController extends Controller
 	 * Add Reservation.
 	 *
 	 * @Route("/add_reservation", name="add_reservation")
-	 * @Method("GET")
+	 * @Method("POST")
 	 * @Template()
 	 */
 	
 	public function addReservationAction(Request $request)
 	{
+		if ($request->getMethod() == 'POST') {
+			$checkinDate = $request->get('checkinDate');
+			$checkoutDate = $request->get('checkoutDate');
+			$roomId = $request->get('selectedRoomId');
+			
+			$reservation = new Reservation();
+			$reservation->setCheckinDate(new DateTime($checkinDate));
+			$reservation->setCheckoutDate(new DateTime($checkoutDate));						
+			
+			$em = $this->getDoctrine()->getManager();			
+			$user = $em->getRepository('AppBundle:User')->find($this->getRequest()->getSession()->get('currentUserInfo')->getId());
+			$reservation->setUser($user);
+			$status = $em->getRepository('AppBundle:ReservationStatus')->find(1);
+			$room = $em->getRepository('AppBundle:Room')->find($roomId);
+			$reservation->setStatus($status);
+			$reservation->setRoom($room);
+			
+			$em->persist($reservation);
+			$em->flush();
+				
+			return $this->redirect($this->generateUrl('mainPage'));
+		}
+		return $this->render('AppBundle:Booking:reservation.html.twig');
 	}
 	
 	/**
@@ -47,34 +73,29 @@ class BookingController extends Controller
 	 */
 	public function getroomsAction()
 	{
-		$checkinDate = $_POST['checkinDate'];
+		$checkinDate = $_POST['checkinDate'];		
 		$checkoutDate = $_POST['checkoutDate'];
-		$roomTypeId = $_POST['$roomTypeId'];
-		$hasWireless = $_POST['$hasWireless'];
-		$hasTV = $_POST['$hasTV'];
-		$hasAirConditioning = $_POST['$hasAirConditioning'];
-		$hasMinibar = $_POST['$hasMinibar'];
+		$roomTypeId = $_POST['roomTypeId'];		
+		$hasWireless = $_POST['hasWireless'];
+		$hasTV = $_POST['hasTV'];
+		$hasAirConditioning = $_POST['hasAirConditioning'];
+		$hasMinibar = $_POST['hasMinibar'];
+				
+		$stmt = $this->getDoctrine()->getEntityManager()
+		->getConnection()
+		->prepare("SELECT r.* FROM room r JOIN room_type rt ON r.room_type_id = rt.id WHERE rt.id = :roomTypeId AND r.id not in (SELECT r.id FROM room r JOIN reservation rv ON rv.room_id = r.id WHERE (:checkinDate <= rv.checkout_date AND :checkoutDate >= checkin_date) AND rv.status_id != 2)");
+		$params['roomTypeId'] = $roomTypeId;
+		/* $params['hasWireless'] = $hasWireless;
+		$params['hasTV'] = $hasTV;
+		$params['hasAirConditioning'] = $hasAirConditioning;
+		$params['hasMinibar'] = $hasMinibar; */
+		$params['checkinDate'] = $checkoutDate;
+		$params['checkoutDate'] = $checkoutDate;
+
+
+		$stmt->execute($params);
+		$result = $stmt->fetchAll();
 		
-		
-		if(isset($checkinDate) && !empty($checkinDate) && isset($checkoutDate) && !empty($checkoutDate) && isset($roomTypeId) && !empty($roomTypeId))  
-		{
-			$em = $this->getDoctrine()->getManager();
-			$query = $em->createQuery("SELECT r.* FROM room r JOIN room_type rt ON r.room_type_id = rt.id WHERE rt.id = :roomTypeId AND has_wireless = :hasWireless AND has_tv = :hasTV AND tas_air_conditioning = :hasAirConditioning AND has_minibar =:hasMinibar AND r.id not in (SELECT r.id FROM room r JOIN reservation rv ON rv.room_id = r.id WHERE (:checkinDate < rv.checkout_date AND :checkoutDate > checkin_date) AND rv.status_id != 2)");
-			$query->setParameters(array(
-					'roomTypeId' => $roomTypeId,
-					'checkinDate' => $checkinDate,
-					'checkoutDate' => $checkoutDate,
-					'hasWireless' => $hasWireless,
-					'hasTV' => $hasTV,
-					'hasAirConditioning' => $hasAirConditioning,
-					'hasMinibar' => $hasMinibar
-			));
-			$rooms = $query->getResult();
-			
-			return $rooms;
-		}
-		
-		return "dfdf";
-		
+		return $this->render('AppBundle:Booking:rooms.html.twig', array('rooms' => $result));
 	}
 }

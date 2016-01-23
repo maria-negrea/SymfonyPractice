@@ -1,8 +1,8 @@
-{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+{%  form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
 {%extends "AppBundle:Admin:indexAdmin.html.twig"%}
 
 {% block container -%}
-<div class="descriptionArea">
+<div class="descriptionArea fixedArea">
     <h1>User edit</h1>
 
     {{ form(edit_form) }}

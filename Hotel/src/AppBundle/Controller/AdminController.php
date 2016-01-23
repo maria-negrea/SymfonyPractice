@@ -12,25 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminController extends Controller{
 	
 	/**
-	 * Users.
+	 * Block users.
 	 *
-	 * @Route("/users", name="users")
+	 * @Route("/blockUsers", name="blockUsers")
 	 * @Template()
 	 */
-	public function usersAction()
+	public function blockUsersAction()
 	{
-		return $this->redirect($this->generateUrl('user'));
-	}
-	
-	/**
-	 * Rooms.
-	 *
-	 * @Route("/rooms", name="rooms")
-	 * @Template()
-	 */
-	public function roomsActions()
-	{
-		return $this->redirect($this->generateUrl('room'));
+		return $this->render('AppBundle:Admin:blockUsers.html.twig');
 	}
 	
 }

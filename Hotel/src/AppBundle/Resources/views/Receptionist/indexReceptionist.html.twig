@@ -20,11 +20,9 @@
 		      <a class="navbar-brand bigTitle" href="{{ path('mainPage') }}">MAJESTIC</a>
 		    </div>
 		    <ul class="nav navbar-nav mainTabContainer">
-		      <li class="navItem"><a href="{{ path('user') }}">Users</a></li>
-		      <li class="navItem"><a href="{{ path('room') }}">Rooms</a></li>		      
-		      <li class="navItem"><a href="{{ path('post') }}">Posts</a></li> 
-		      <li class="navItem"><a href="{{ path('reservation') }}">Reservations</a></li>
-		      <li class="navItem"><a href="{{ path('blockUsers') }}">Block users</a></li>		      
+		      <li class="navItem"><a href="{{ path('checkin') }}">Check in</a></li>	 
+		      <li class="navItem"><a href="{{ path('checkout') }}">Check out</a></li>
+		      <li class="navItem"><a href="{{ path('booking') }}">Booking</a></li>		     
 		      <li class="smallNavItem"><a href="{{ path('logout') }}">Log out</a></li>	
 		      <li class="smallNavItem"><a>Hello, {{ app.session.get('currentUserInfo').firstName}}!</a></li> 	      	
 		    </ul>

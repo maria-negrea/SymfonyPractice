@@ -1,3 +1,43 @@
-{%extends "AppBundle:Home:index.html.twig"%}
- {%block container %}
- {%endblock%}
+{% if  app.session.get('currentUserInfo') is defined %}
+	{%extends "AppBundle:Home:index.html.twig"%}
+	
+	{%block container %}
+	<form class="descriptionArea" method ="POST" action="{{path('add_reservation')}}" data-validate="parsley">
+		<h1>Reservation</h1>
+		<div>
+			<label>Check in date: </label>
+			<input id="datePickerCheckin" type="text" />
+		</div>
+		<div>
+			<label>Check out date: </label>
+			<input id="datePickerCheckout" type="text" />
+		</div>
+		<div class="form-group">
+			<label>Room type: </label>
+			<select id="selectRoomType">
+			{% for roomType in roomTypes %}
+			<option value="{{ roomType.id }}">{{ roomType.name }}</option>
+			{% endfor %}
+			</select>
+		</div>
+		<label>Facilities:</label>
+		<div class="form-group">
+			<input type="checkbox" id="checkboxWireless"> Wireless<br>
+			<input type="checkbox" id="checkboxTV"> TV<br>
+			<input type="checkbox" id="checkboxAirConditioning"> Air conditioning<br>
+			<input type="checkbox" id="checkboxMinibar"> Minibar<br>
+		</div>
+		<div class="form-group">
+			<input type="button" id="buttonChooseRoom" value="Choose room" />
+			<select id="selectRooms" class="hiddenField"></select>
+		</div>
+		<div class="form-group">
+			<label>Total price: </label>
+			<label id="labelTotalPrice"></label>
+		</div>
+		<button class="btn btn-large btn-primary centeredSection" type="submit">Confirm</button>
+  
+	{%endblock%}
+{%endif%}   
+
+

@@ -7,10 +7,11 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <link href="{{asset('bundles/appbundle/css/bootstrap.css')}}" rel="stylesheet">
-        <link href="{{asset('bundles/appbundle/css/bootstrap-responsive.css')}}" rel="stylesheet">
+		<link href="{{asset('bundles/appbundle/css/bootstrap.css')}}" rel="stylesheet">
+		<link href="{{asset('bundles/appbundle/css/bootstrap-responsive.css')}}" rel="stylesheet"> 		              
         <link href="{{asset('bundles/appbundle/css/parsley/parsley.css')}}" rel="stylesheet">
         <link href="{{asset('bundles/appbundle/css/main.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/appbundle/css/jquery-ui.css')}}" rel="stylesheet"> 
 {%block stylesheets %}
 {%endblock%}
         </head>
@@ -42,10 +43,12 @@
 {%block container %}
 {%endblock%}
 		<script src="{{asset('bundles/appbundle/js/jquery.js')}}"></script>
+		<script src="{{asset('bundles/appbundle/js/jquery-ui.js')}}"></script>
         <script src="{{asset('bundles/appbundle/js/bootstrap.js')}}"></script>
         <script src="{{asset('bundles/appbundle/js/parsley/parsley.min.js')}}"></script>
         <script src="{{asset('bundles/appbundle/js/parsley/parsley-standalone.min.js')}}"></script>
         <script src="{{asset('bundles/appbundle/js/parsley/parsley.extend.min.js')}}"></script>
+        <script src="{{asset('bundles/appbundle/js/booking.js')}}"></script>
 {%block javascripts %}
  {%endblock%}
 		</body>

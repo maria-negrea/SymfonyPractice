@@ -29,6 +29,12 @@ class HomeController extends Controller{
 			{
 				return $this->render('AppBundle:Admin:adminMainPage.html.twig');
 			}
+			
+			$isReceptionist = $currentUser->getIsReceptionist();
+			if($isReceptionist)
+			{
+				return $this->render('AppBundle:Receptionist:receptionistMainPage.html.twig');
+			}
 		}
 		
 			

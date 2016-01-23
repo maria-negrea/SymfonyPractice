@@ -20,31 +20,73 @@
             </tr>
             <tr>
                 <th>First Name</th>
-                <td>{{ entity.firstName }}</td>
+                <td>
+                {% if entity.firstName == null %}
+                -
+                {% else %}
+                {{ entity.firstName }}
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Last Name</th>
-                <td>{{ entity.lastName }}</td>
+                <td>
+                {% if entity.lastName == null %}
+                -
+                 {% else %}
+                {{ entity.lastName }}
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Telephone Number</th>
-                <td>{{ entity.telephoneNumber }}</td>
+                <td>
+                {% if entity.telephoneNumber == null %}
+                -
+                 {% else %}
+                {{ entity.telephoneNumber }}
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Card Number</th>
-                <td>{{ entity.cardNumber }}</td>
+               <td>
+                {% if entity.cardNumber == null %}
+                -
+                 {% else %}
+                {{ entity.cardNumber }}
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Is Blocked</th>
-                <td>{{ entity.isBlocked }}</td>
+                <td>
+                {% if entity.isBlocked == 1%}
+                YES
+                {% else %}
+                NO
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Is Admin</th>
-                <td>{{ entity.isAdmin }}</td>
+                <td>
+                {% if entity.isAdmin == 1%}
+                YES
+                {% else %}
+                NO
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Is Receptionist</th>
-                <td>{{ entity.isReceptionist }}</td>
+                <td>
+                {% if entity.isReceptionist == 1%}
+                YES
+                {% else %}
+                NO
+                {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>

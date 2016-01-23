@@ -20,19 +20,43 @@
             </tr>
             <tr>
                 <th>Has Wireless</th>
-                <td>{{ entity.hasWireless }}</td>
+                <td>
+                {% if entity.hasWireless == 1%}
+                YES
+                {% else %}
+                NO
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Has Air Conditioning</th>
-                <td>{{ entity.hasAirConditioning }}</td>
+                <td>
+                {% if entity.hasAirConditioning == 1%}
+                YES
+                {% else %}
+                NO
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Has TV</th>
-                <td>{{ entity.hasTv }}</td>
+                <td>
+                {% if entity.hasTV == 1%}
+                YES
+                {% else %}
+                NO
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Has Minibar</th>
-                <td>{{ entity.hasMinibar }}</td>
+                <td>
+                {% if entity.hasMinibar == 1%}
+                YES
+                {% else %}
+                NO
+                {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>

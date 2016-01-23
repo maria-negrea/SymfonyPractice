@@ -10,6 +10,7 @@
                 <th>Id</th>
                 <th>Body</th>
                 <th>Rating Value</th>
+                <th>User</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,6 +20,7 @@
                 <td><a href="{{ path('post_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.body }}</td>
                 <td>{{ entity.ratingValue }}</td>
+                <td>{{ entity.user }}</td>
                 <td>
                 <ul>
                     <li>

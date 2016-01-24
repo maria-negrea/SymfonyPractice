@@ -10,6 +10,7 @@ use AppBundle\Entity\RoomType;
 use Doctrine\ORM\Query\ResultSetMapping;
 use AppBundle\Entity\Reservation;
 use DateTime;
+use AppBundle\Entity\User;
 
 class BookingController extends Controller
 {
@@ -100,10 +101,8 @@ class BookingController extends Controller
 		$params['hasTV'] = $hasTV;
 		$params['hasAirConditioning'] = $hasAirConditioning;
 		$params['hasMinibar'] = $hasMinibar; */
-		$params['checkinDate'] = $checkoutDate;
+		$params['checkinDate'] = $checkinDate;
 		$params['checkoutDate'] = $checkoutDate;
-
-
 		$stmt->execute($params);
 		$result = $stmt->fetchAll();
 		
@@ -129,7 +128,8 @@ class BookingController extends Controller
 		
 		$em = $this->getDoctrine()->getManager();
 		$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
-		if($reservation)
+		$confirmedStatus = $em->getRepository('AppBundle:ReservationStatus')->find(1);
+		if($reservation && $reservation->getStatus() == $confirmedStatus)
 		{
 			$status = $em->getRepository('AppBundle:ReservationStatus')->find(2);
 			$reservation->setStatus($status);
@@ -143,28 +143,68 @@ class BookingController extends Controller
 	}
 	
 	/**
-	 * Checkin reservation.
+	 * Checkin.
 	 *
-	 * @Route("/checkin{id}", name="checkin")
-	 * @Method("GET")
+	 * @Route("/checkinfinal", name="checkinfinal")
+	 * @Method("POST")
 	 * @Template()
 	 */
-	public function checkinAction(Request $request, $id)
-	{	
-		if($session->get("currentUserInfo") == null || $session->get("currentUserInfo")->getIsReceptionist() == false)
-		{
-			return $this->redirect($this->generateUrl('login'));
-		}
+	public function checkinFinalAction(Request $request)
+	{
+		if ($request->getMethod() == 'POST') {
+			
+			$id = $request->get('reservationId');
+			$session = $this->getRequest()->getSession();
+			if($session->get("currentUserInfo") == null || $session->get("currentUserInfo")->getIsReceptionist() == false)
+			{
+				return $this->redirect($this->generateUrl('login'));
+			}
+			
+			$em = $this->getDoctrine()->getManager();
+			$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
+			$confirmedStatus = $em->getRepository('AppBundle:ReservationStatus')->find(1);
+			if($reservation && $reservation->getStatus() == $confirmedStatus)
+			{
+				$status = $em->getRepository('AppBundle:ReservationStatus')->find(3);
+				$reservation->setStatus($status);
+			
+				$em->merge($reservation);
+				$em->flush();
+			}
+		}	
+		
+		return $this->redirect($this->generateUrl('mainPage'));
+	}
 	
-		$em = $this->getDoctrine()->getManager();
-		$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
-		if($reservation)
-		{
-			$status = $em->getRepository('AppBundle:ReservationStatus')->find(3);
-			$reservation->setStatus($status);
-				
-			$em->merge($reservation);
-			$em->flush();
+	/**
+	 * Checkout.
+	 *
+	 * @Route("/checkoutfinal", name="checkoutfinal")
+	 * @Method("POST")
+	 * @Template()
+	 */
+	public function checkoutFinalAction(Request $request)
+	{	
+		if ($request->getMethod() == 'POST') {
+			
+			$id = $request->get('reservationId');		
+			$session = $this->getRequest()->getSession();
+			if($session->get("currentUserInfo") == null || $session->get("currentUserInfo")->getIsReceptionist() == false)
+			{
+				return $this->redirect($this->generateUrl('login'));
+			}
+		
+			$em = $this->getDoctrine()->getManager();
+			$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
+			$checkedinStatus = $em->getRepository('AppBundle:ReservationStatus')->find(3);
+			if($reservation && $reservation->getStatus() == $checkedinStatus)
+			{
+				$status = $em->getRepository('AppBundle:ReservationStatus')->find(4);
+				$reservation->setStatus($status);
+					
+				$em->merge($reservation);
+				$em->flush();
+			}
 		}
 		
 		return $this->redirect($this->generateUrl('mainPage'));
@@ -173,30 +213,37 @@ class BookingController extends Controller
 	/**
 	 * Checkout reservation.
 	 *
-	 * @Route("/checkout{id}", name="checkout")
-	 * @Method("GET")
+	 * @Route("/findReservation", name="findReservation")
+	 * @Method("POST")
 	 * @Template()
 	 */
-	public function checkoutAction(Request $request, $id)
-	{	
-		if($session->get("currentUserInfo") == null || $session->get("currentUserInfo")->getIsReceptionist() == false)
-		{
-			return $this->redirect($this->generateUrl('login'));
-		}
 	
-		$em = $this->getDoctrine()->getManager();
-		$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
-		if($reservation)
-		{
-			$status = $em->getRepository('AppBundle:ReservationStatus')->find(4);
-			$reservation->setStatus($status);
+	public function findReservationAction(Request $request)
+	{
+		if ($request->getMethod() == 'POST') {
+			$email = $request->get('emailReservation');
+			$status = $request->get('status');
+			
+			$em = $this->getDoctrine()->getManager();			
+			if($status == "checkin")
+			{
+				$reservationStatusId = 1;
+			}
+			else
+			{
+				$reservationStatusId = 3;
+			}
+			
+			$reservationStatus = $em->getRepository('AppBundle:ReservationStatus')->find($reservationStatusId);
+			$user = $em->getRepository("AppBundle:User")->findBy(array("email" => $email));			
+			if($user)
+			{
+				$reservations = $em->getRepository("AppBundle:Reservation")->findBy(array("user" => $user, "status" => $reservationStatus));
 				
-			$em->merge($reservation);
-			$em->flush();
+				return $this->render('AppBundle:Receptionist:getReservations.html.twig', array('reservations' => $reservations, "status" =>$status));
+			}			
+			
+			return $this->redirect($this->generateUrl('mainPage'));
 		}
-		
-		return $this->redirect($this->generateUrl('mainPage'));
 	}
-	
-	
 }

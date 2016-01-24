@@ -19,7 +19,7 @@ class ReceptionistController extends Controller{
 	 */
 	public function checkinAction()
 	{
-		return $this->render('AppBundle:Receptionist:checkin.html.twig');
+		return $this->render('AppBundle:Receptionist:findReservation.html.twig', array("status" => "checkin"));
 	}
 	
 	/**
@@ -30,7 +30,7 @@ class ReceptionistController extends Controller{
 	 */
 	public function checkoutAction()
 	{
-		return $this->render('AppBundle:Receptionist:checkout.html.twig');
+		return $this->render('AppBundle:Receptionist:findReservation.html.twig', array("status" => "checkout"));
 	}
 	
 }

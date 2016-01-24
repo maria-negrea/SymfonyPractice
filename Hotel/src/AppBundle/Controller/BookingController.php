@@ -163,7 +163,7 @@ class BookingController extends Controller
 			}
 			
 			$em = $this->getDoctrine()->getManager();
-			$reservation = $em->getRepository('AppBundle:Reservation')->findBy(array("id" =>$id));
+			$reservation = $em->getRepository('AppBundle:Reservation')->findOneBy(array("id" =>$id));
 			$confirmedStatus = $em->getRepository('AppBundle:ReservationStatus')->find(1);
 			if($reservation && $reservation->getStatus() == $confirmedStatus)
 			{

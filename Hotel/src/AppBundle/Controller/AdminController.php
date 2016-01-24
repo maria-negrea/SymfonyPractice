@@ -55,7 +55,6 @@ class AdminController extends Controller{
 			
 			$em = $this->getDoctrine()->getManager();
 			$user = $em->getRepository("AppBundle:User")->findOneBy(array("id" => $userId));
-			/* return $this->render('AppBundle:Home:description.html.twig', array("data" => $userId)); */
 			if($user)
 			{
 				$user->setIsBlocked(true);
@@ -71,15 +70,6 @@ class AdminController extends Controller{
 					
 					$em->flush();
 				}
-				
-				
-				/* $stmt = $this->getDoctrine()->getEntityManager()
-				->getConnection()
-				->prepare("DELETE from reservation WHERE user_id = :userId");
-				$params['userId'] = $userId;
-					
-				$stmt->execute($params);
-				$users = $stmt->fetchAll(); */
 			}
 			
 			

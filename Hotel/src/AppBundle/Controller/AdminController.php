@@ -51,24 +51,35 @@ class AdminController extends Controller{
 	{
 		if ($request->getMethod() == 'POST') {
 			
-			$userId = $request->get('userId');
+			$userId = $request->get('id');
 			
 			$em = $this->getDoctrine()->getManager();
-			$user = $em->getRepository("AppBundle:User")->findBy(array("id" => $userId));
-			return $this->render('AppBundle:Home:description.html.twig', array("data" => $userId));
+			$user = $em->getRepository("AppBundle:User")->findOneBy(array("id" => $userId));
+			/* return $this->render('AppBundle:Home:description.html.twig', array("data" => $userId)); */
 			if($user)
 			{
 				$user->setIsBlocked(true);
 				$em->merge($user);
 				$em->flush();
+				
+				$reservations = $em->getRepository('AppBundle:Reservation')->findBy(array("user" =>$user));
+				if($reservations)
+				{
+					foreach ($reservations as $reservation) {
+						$em->remove($reservation);
+					}
 					
-				$stmt = $this->getDoctrine()->getEntityManager()
+					$em->flush();
+				}
+				
+				
+				/* $stmt = $this->getDoctrine()->getEntityManager()
 				->getConnection()
 				->prepare("DELETE from reservation WHERE user_id = :userId");
 				$params['userId'] = $userId;
 					
 				$stmt->execute($params);
-				$users = $stmt->fetchAll();
+				$users = $stmt->fetchAll(); */
 			}
 			
 			

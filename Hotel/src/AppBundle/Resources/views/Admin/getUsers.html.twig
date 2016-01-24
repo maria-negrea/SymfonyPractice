@@ -9,12 +9,12 @@
 	</thead>
 
 	{% for user in users %}
-		<form method="POST" action="{{ path('blockUser')}}" data-validate="parsley">
+		<form method="POST" action="{{ path('blockUser')}}" data-validate="parsley" class="formBlock">
 			<tr>
 			<td><label name="userId" value="{{ user.id }}">{{ user.id }}</label></td>
 			<td><label>{{ user.email }}</label></td>
 			<td>
-			<input class="btn btn-primary centeredSection actionButton" type="submit" value="BLOCK" />
+			<input class="btn btn-primary centeredSection actionButton" data-user-id="{{ user.id }}" type="submit" value="BLOCK" />
 			</td>
 			</tr>
 		</form>

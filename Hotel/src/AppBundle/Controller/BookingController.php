@@ -103,10 +103,6 @@ class BookingController extends Controller
 		->getConnection()
 		->prepare("SELECT r.* FROM room r JOIN room_type rt ON r.room_type_id = rt.id WHERE rt.id = :roomTypeId AND r.id not in (SELECT r.id FROM room r JOIN reservation rv ON rv.room_id = r.id WHERE (:checkinDate <= rv.checkout_date AND :checkoutDate >= checkin_date) AND rv.status_id != 2)");
 		$params['roomTypeId'] = $roomTypeId;
-		/* $params['hasWireless'] = $hasWireless;
-		$params['hasTV'] = $hasTV;
-		$params['hasAirConditioning'] = $hasAirConditioning;
-		$params['hasMinibar'] = $hasMinibar; */
 		$params['checkinDate'] = $checkinDate;
 		$params['checkoutDate'] = $checkoutDate;
 		$stmt->execute($params);
@@ -193,7 +189,7 @@ class BookingController extends Controller
 	{	
 		if ($request->getMethod() == 'POST') {
 			
-			$id = $request->get('reservationId');		
+			$id = $request->get('id');
 			$session = $this->getRequest()->getSession();
 			if($session->get("currentUserInfo") == null || $session->get("currentUserInfo")->getIsReceptionist() == false)
 			{
@@ -201,13 +197,12 @@ class BookingController extends Controller
 			}
 		
 			$em = $this->getDoctrine()->getManager();
-			$reservation = $em->getRepository('AppBundle:Reservation')->findBy(array("id" =>$id));
-			return $this->render('AppBundle:Home:description.html.twig', array("data" => $id));
+			$reservation = $em->getRepository('AppBundle:Reservation')->findOneBy(array("id" =>$id));
 			if($reservation)
 			{
-				$status = $em->getRepository('AppBundle:ReservationStatus')->findBy(array("id" => 4));
+				$status = $em->getRepository('AppBundle:ReservationStatus')->find(4);
 				$reservation->setStatus($status);
-					
+			
 				$em->merge($reservation);
 				$em->flush();
 			}

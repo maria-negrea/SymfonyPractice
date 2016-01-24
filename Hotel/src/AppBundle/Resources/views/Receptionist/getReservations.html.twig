@@ -25,7 +25,7 @@
 			</td>
 		</form>
 		{% else %}
-		<form method="POST" action="{{ path('checkoutfinal')}}" >
+		<form method="POST" action="{{ path('checkoutfinal')}}" class="formCheckout" >
 			<td><label name="reservationId" value="{{ reservation.id }}">{{ reservation.id }}</label></td>
 			<td><label>{{ reservation.room.number }}</label></td>
 			<td><label>{{ reservation.user.firstName }} {{ reservation.user.lastName}}</label></td>

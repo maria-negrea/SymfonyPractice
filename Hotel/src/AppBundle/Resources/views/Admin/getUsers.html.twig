@@ -1,0 +1,24 @@
+{%extends "AppBundle:Admin:indexAdmin.html.twig"%}
+{%block container %}
+<div class="descriptionArea">
+<table class="records_list">
+	<thead>
+		<th>User Id</th>
+		<th>Email</th>
+		<th>Action</th>
+	</thead>
+
+	{% for user in users %}
+		<form method="POST" action="{{ path('blockUser')}}" data-validate="parsley">
+			<tr>
+			<td><label name="userId" value="{{ user.id }}">{{ user.id }}</label></td>
+			<td><label>{{ user.email }}</label></td>
+			<td>
+			<input class="btn btn-primary centeredSection actionButton" type="submit" value="BLOCK" />
+			</td>
+			</tr>
+		</form>
+	{% endfor %}
+</table>
+</div>
+{%endblock%}

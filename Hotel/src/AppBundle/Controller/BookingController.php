@@ -1,16 +1,15 @@
 <?php
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Reservation;
+use AppBundle\Entity\RoomType;
+use AppBundle\Entity\User;
+use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AppBundle\Entity\RoomType;
-use Doctrine\ORM\Query\ResultSetMapping;
-use AppBundle\Entity\Reservation;
-use DateTime;
-use AppBundle\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class BookingController extends Controller
 {
@@ -25,6 +24,13 @@ class BookingController extends Controller
 	public function indexAction(Request $request) 
 	{	
 		$em = $this->getDoctrine()->getManager();
+		
+		$session = $this->getRequest()->getSession();
+		
+		if($session->get("currentUserInfo") == null || $session->get("currentUserInfo")->getIsBlocked())
+		{
+			return $this->redirect($this->generateUrl('login'));
+		}
 		
 		$roomTypes = $em->getRepository('AppBundle:RoomType')->findAll();
 		return $this->render('AppBundle:Booking:reservation.html.twig', array('roomTypes' => $roomTypes));
@@ -161,7 +167,7 @@ class BookingController extends Controller
 			}
 			
 			$em = $this->getDoctrine()->getManager();
-			$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
+			$reservation = $em->getRepository('AppBundle:Reservation')->findBy(array("id" =>$id));
 			$confirmedStatus = $em->getRepository('AppBundle:ReservationStatus')->find(1);
 			if($reservation && $reservation->getStatus() == $confirmedStatus)
 			{
@@ -195,11 +201,11 @@ class BookingController extends Controller
 			}
 		
 			$em = $this->getDoctrine()->getManager();
-			$reservation = $em->getRepository('AppBundle:Reservation')->find($id);
-			$checkedinStatus = $em->getRepository('AppBundle:ReservationStatus')->find(3);
-			if($reservation && $reservation->getStatus() == $checkedinStatus)
+			$reservation = $em->getRepository('AppBundle:Reservation')->findBy(array("id" =>$id));
+			return $this->render('AppBundle:Home:description.html.twig', array("data" => $id));
+			if($reservation)
 			{
-				$status = $em->getRepository('AppBundle:ReservationStatus')->find(4);
+				$status = $em->getRepository('AppBundle:ReservationStatus')->findBy(array("id" => 4));
 				$reservation->setStatus($status);
 					
 				$em->merge($reservation);

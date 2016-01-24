@@ -14,24 +14,27 @@
 	{% for reservation in reservations %}
 	<tr>
 		{% if status is same as("checkin") %}
-		<form method="POST" action="{{ path('checkinfinal')}}" >
+		<form method="POST" action="{{ path('checkinfinal')}}">
+			<td><label name="reservationId" value="{{ reservation.id }}">{{ reservation.id }}</label></td>
+			<td><label>{{ reservation.room.number }}</label></td>
+			<td><label>{{ reservation.user.firstName }} {{ reservation.user.lastName}}</label></td>
+			<td><label>{{ reservation.checkinDate|date('Y-m-d') }}</label></td>
+			<td><label>{{ reservation.checkoutDate|date('Y-m-d') }}</label></td>
+			<td>
+			<input class="btn btn-primary centeredSection actionButton" type="submit" data-reservation-id="{{ reservation.id }}" value="CHECK IN" />
+			</td>
+		</form>
 		{% else %}
 		<form method="POST" action="{{ path('checkoutfinal')}}" >
+			<td><label name="reservationId" value="{{ reservation.id }}">{{ reservation.id }}</label></td>
+			<td><label>{{ reservation.room.number }}</label></td>
+			<td><label>{{ reservation.user.firstName }} {{ reservation.user.lastName}}</label></td>
+			<td><label>{{ reservation.checkinDate|date('Y-m-d') }}</label></td>
+			<td><label>{{ reservation.checkoutDate|date('Y-m-d') }}</label></td>
+			<td><input class="btn btn-primary centeredSection actionButton" type="submit" data-reservation-id="{{ reservation.id }}" value="CHECK OUT" />
+			</td>
+		</form>
 		{% endif %}
-		<td><label name="reservationId" value="{{ reservation.id }}">{{ reservation.id }}</label></td>
-		<td><label>{{ reservation.room.number }}</label></td>
-		<td><label>{{ reservation.user.firstName }} {{ reservation.user.lastName}}</label></td>
-		<td><label>{{ reservation.checkinDate|date('Y-m-d') }}</label></td>
-		<td><label>{{ reservation.checkoutDate|date('Y-m-d') }}</label></td>
-		<td>
-		
-			{% if status is same as("checkin") %}
-			<input class="btn btn-primary centeredSection actionButton" type="submit" data-reservation-id="{{ reservation.id }}" value="CHECK IN" />
-			{% else %}
-			<input class="btn btn-primary centeredSection actionButton" type="submit" data-reservation-id="{{ reservation.id }}" value="CHECK OUT" />
-			{% endif %}
-		</form>		
-		</td>
 	</tr>
 	{% endfor %}
 </table>
